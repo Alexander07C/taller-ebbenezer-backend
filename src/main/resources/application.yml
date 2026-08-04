@@ -1,0 +1,27 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: taller-ebbenezer-backend
+
+  datasource:
+    # Reemplaza con tu cadena de conexion de Neon.tech (gratis)
+    # Ejemplo: jdbc:postgresql://ep-xxxx.us-east-2.aws.neon.tech/tallerdb?sslmode=require
+    url: ${DB_URL:jdbc:postgresql://ep-sweet-sound-ayz4va4j-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require}
+    username: ${DB_USER:neondb_owner}
+    password: ${DB_PASSWORD:npg_qJeTZlI1U4Yo}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+jwt:
+  secret: ${JWT_SECRET:cambia-esta-clave-por-una-segura-de-al-menos-256-bits}
+  expiration-ms: 86400000
