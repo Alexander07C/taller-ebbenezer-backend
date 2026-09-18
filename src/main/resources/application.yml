@@ -6,12 +6,17 @@ spring:
     name: taller-ebbenezer-backend
 
   datasource:
-    # Reemplaza con tu cadena de conexion de Neon.tech (gratis)
-    # Ejemplo: jdbc:postgresql://ep-xxxx.us-east-2.aws.neon.tech/tallerdb?sslmode=require
-    url: ${DB_URL:jdbc:postgresql://ep-sweet-sound-ayz4va4j-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require}
-    username: ${DB_USER:neondb_owner}
-    password: ${DB_PASSWORD:npg_qJeTZlI1U4Yo}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/tallerdb}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 30000
+      max-lifetime: 240000
+      connection-timeout: 20000
+      validation-timeout: 5000
 
   jpa:
     hibernate:
