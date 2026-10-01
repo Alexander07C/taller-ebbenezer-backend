@@ -63,10 +63,13 @@ public class Venta {
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Abono> abonos = new ArrayList<>();
 
-    @Column(name = "es_salida", nullable = false)
+    // Columnas agregadas para salidas de mecanicos. Van con columnDefinition con DEFAULT
+    // porque ddl-auto=update las anade a una tabla que ya tiene ventas: un NOT NULL sin
+    // default hace fallar el ALTER y deja la columna sin crear.
+    @Column(name = "es_salida", columnDefinition = "boolean default false")
     private boolean esSalida = false;
 
-    @Column(name = "monto_servicio")
+    @Column(name = "monto_servicio", columnDefinition = "numeric(12,2) default 0")
     private java.math.BigDecimal montoServicio = java.math.BigDecimal.ZERO;
 
     @Column(columnDefinition = "text")
