@@ -28,6 +28,11 @@ public class VentaDetalleResponse {
     private final int cantidadItems;
     private final String metodoPago;
     private final List<AbonoResponse> abonos;
+    private final boolean esSalida;
+    private final BigDecimal montoServicio;
+    private final String concepto;
+    private final String nombreCliente;
+    private final String motivoAnulacion;
 
     public VentaDetalleResponse(Venta venta, BigDecimal saldoPendiente) {
         BigDecimal saldo = venta.getEstado() == EstadoVenta.ANULADO ? BigDecimal.ZERO : saldoPendiente;
@@ -48,5 +53,10 @@ public class VentaDetalleResponse {
         this.cantidadItems = venta.getItems().stream().mapToInt(VentaItem::getCantidad).sum();
         this.metodoPago = venta.getMetodoPago();
         this.abonos = venta.getAbonos().stream().map(AbonoResponse::new).toList();
+        this.esSalida = venta.isEsSalida();
+        this.montoServicio = venta.getMontoServicio() != null ? venta.getMontoServicio() : BigDecimal.ZERO;
+        this.concepto = venta.getConcepto();
+        this.nombreCliente = venta.getNombreCliente();
+        this.motivoAnulacion = venta.getMotivoAnulacion();
     }
 }

@@ -40,6 +40,10 @@ public class SecurityConfig {
 
                 .requestMatchers("/api/usuarios/**").hasRole("DUENO")
 
+                // Salidas de mecanicos: crear y anular permitidas a dueño y empleado.
+                .requestMatchers(HttpMethod.POST, "/api/salidas/**").hasAnyRole("DUENO", "EMPLEADO")
+                .requestMatchers(HttpMethod.PATCH, "/api/salidas/**").hasAnyRole("DUENO", "EMPLEADO")
+
                 .requestMatchers(HttpMethod.DELETE, "/api/clientes/**").hasRole("DUENO")
                 .requestMatchers(HttpMethod.DELETE, "/api/ventas/**").hasRole("DUENO")
 

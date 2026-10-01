@@ -62,4 +62,19 @@ public class Venta {
 
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Abono> abonos = new ArrayList<>();
+
+    @Column(name = "es_salida", nullable = false)
+    private boolean esSalida = false;
+
+    @Column(name = "monto_servicio")
+    private java.math.BigDecimal montoServicio = java.math.BigDecimal.ZERO;
+
+    @Column(columnDefinition = "text")
+    private String concepto;
+
+    @Column(name = "nombre_cliente")
+    private String nombreCliente;
+
+    @Column(name = "motivo_anulacion", columnDefinition = "text")
+    private String motivoAnulacion;
 }
